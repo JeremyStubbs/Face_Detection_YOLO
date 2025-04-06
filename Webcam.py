@@ -26,6 +26,9 @@ while True:
     ## Get bounding box and label
     result = results[0]
     boxes = result.boxes  # ultralytics.engine.results.Boxes
+    
+    # Index for the number of people identified: important for tracking
+    x = 0
 
     # Loop through each box
     for box in boxes:
@@ -36,7 +39,7 @@ while True:
         conf = float(box.conf[0])
         cls = int(box.cls[0])
         label = f"{result.names[cls]}: {conf:.2f}"
-        label = "jeremy"
+        label = "Person" + str(x)
 
         # Draw the rectangle
         cv2.rectangle(my_pic, (x1, y1), (x2, y2), color=(0, 255, 0), thickness=2)
@@ -45,6 +48,7 @@ while True:
         cv2.putText(my_pic, label, (x1, y1 - 10),
                     fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                     fontScale=0.5, color=(0, 255, 0), thickness=1)
+        x = x+1
 
 
     #Display image with rectangle
