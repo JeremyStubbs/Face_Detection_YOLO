@@ -21,7 +21,7 @@ while True:
     my_pic = get_picture (img)
     
     # Predict with the model
-    results = model(my_pic)      
+    results = model.track(my_pic, show=True, tracker="bytetrack.yaml")   
 
     ## Get bounding box and label
     result = results[0]
